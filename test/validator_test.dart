@@ -374,6 +374,23 @@ void main() {
         throwsA(_message('must be an object or a boolean')),
       );
     });
+
+    test('throws for an invalid pattern, in a pattern or a pattern property', () {
+      expect(
+        () => compile({'type': 'string', 'pattern': '(unclosed'}),
+        throwsA(_message('Invalid pattern "(unclosed": Unterminated group')),
+      );
+      expect(
+        () => compile({
+          'patternProperties': {'[a-': true},
+        }),
+        throwsA(_message('Invalid pattern "[a-"')),
+      );
+    });
+
+    test('a pattern invalid only with Unicode still compiles without it', () {
+      expect(compile({'type': 'string', 'pattern': r'\-'}).check('-'), isTrue);
+    });
   });
 
   group('unresolved references', () {

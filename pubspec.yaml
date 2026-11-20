@@ -2,7 +2,7 @@ name: pluto
 description: >-
   JSON Schema validation for drafts 2020-12 and 7, with error paths and opt-in coercion of loosely typed input.
   A Dart port of pi-schema.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/kamora/pluto
 
 environment:

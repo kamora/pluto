@@ -57,13 +57,18 @@ class Compiler {
   }
 
   /// The regular expression of a `pattern`: ECMAScript with Unicode; a source that is invalid with it (some older
-  /// schemas escape characters Unicode mode rejects) compiles without it.
+  /// schemas escape characters Unicode mode rejects) compiles without it. Throws a [SchemaException] for a source that
+  /// is invalid either way.
   RegExp regex(String source) {
     return _regexes.putIfAbsent(source, () {
       try {
         return RegExp(source, unicode: true);
       } on FormatException {
-        return RegExp(source);
+        try {
+          return RegExp(source);
+        } on FormatException catch (error) {
+          throw SchemaException('Invalid pattern "$source": ${error.message}');
+        }
       }
     });
   }
