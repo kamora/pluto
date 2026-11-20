@@ -1,0 +1,12 @@
+include: package:lints/recommended.yaml
+
+formatter:
+  page_width: 120
+
+analyzer:
+  language:
+    strict-raw-types: true
+
+linter:
+  rules:
+    curly_braces_in_flow_control_structures: true
