@@ -4,7 +4,6 @@ description: >-
   A Dart port of pi-schema.
 version: 0.0.1
 repository: https://github.com/kamora/pluto
-publish_to: none
 
 environment:
   sdk: ^3.13.5
